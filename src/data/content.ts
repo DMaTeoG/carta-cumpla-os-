@@ -1,9 +1,5 @@
-// Importa el tipo TypeScript que define la estructura esperada de los datos.
-// Esto garantiza que el objeto "birthdayContent" tenga las propiedades correctas.
 import type { BirthdayContent } from "@/lib/types";
 
-// Exporta un objeto llamado "birthdayContent" que cumple con la interfaz BirthdayContent.
-// Este objeto contiene toda la información visual y textual de la página de cumpleaños.
 export const birthdayContent: BirthdayContent = {
   // 🎨 Tema general: define los colores de la página.
   theme: { palette: "dulcePastel" },
@@ -21,12 +17,12 @@ export const birthdayContent: BirthdayContent = {
 
   // ⌨️ Configuración del efecto de "máquina de escribir" para la carta.
   typewriter: {
-    speedMs: 50,                  // Velocidad entre letras (ms por carácter).
-    startDelayMs: 10000,            // Retraso antes de empezar a escribir (ms).
-    soundClicks: true,            // Reproduce clics de máquina de escribir.
-    endChime: true,               // Sonido final cuando termina de escribir.
-    liveLabel: "La carta se está escribiendo",   // Descripción accesible mientras escribe.
-    finishedLabel: "Carta terminada",            // Descripción accesible al finalizar.
+    speedMs: 50,                   // Velocidad entre letras (ms por carácter).
+    startDelayMs: 1000,            // Retraso antes de empezar a escribir (ms).
+    soundClicks: true,             // Reproduce clics de máquina de escribir.
+    endChime: true,                // Sonido final cuando termina de escribir.
+    liveLabel: "La carta se está escribiendo", // Descripción accesible mientras escribe.
+    finishedLabel: "Carta terminada",          // Descripción accesible al finalizar.
   },
 
   // 🗓 Línea del tiempo de recuerdos (timeline de momentos compartidos).
@@ -35,19 +31,19 @@ export const birthdayContent: BirthdayContent = {
     ariaLabel: "Línea del tiempo de recuerdos importantes",
     items: [
       {
-        date: "22 de marzo de 2025",
-        title: "El café infinito",
-        text: "Tres horas hablando de todo y de nada. Nuestro chiste interno nació ahí.",
-        image: { url: "/photos/cafe.jpg", alt: "Tazas de café en mesa con manos" },
+        date: "22 de agosto de 2023",
+        title: "El día que nos conocimos",
+        text: "Ese día fue más divertido de lo que esperaba. Nunca pensé que iba a conocer a alguien como tú, y mucho menos que te volverías una amiga tan especial. Desde ese día algo me dijo que íbamos a llevarnos bien, y no me equivoqué. Me alegra un montón haber coincidido contigo.",
+        image: { url: "/dia_c.jpg", alt: "Foto del día que nos conocimos" },
       },
       {
-        date: "Ago 2023",
+        date: "Octubre 2023",
         title: "Mini viaje sorpresa",
-        text: "Nos perdimos, pero encontramos el mejor mirador.",
-        image: { url: "/photos/viaje.jpg", alt: "Mirador durante el atardecer naranja" },
+        text: "Nos perdimos, pero encontramos el mejor mirador. Fue un día lleno de risas y buena vibra.",
+        video: { url: "/viaje.mp4", alt: "Video del viaje al mirador" },
       },
       {
-        date: "Ene 2024",
+        date: "Enero 2024",
         title: "Domingo lento",
         text: "Pelis, manta y galletas. Receta: quedarse.",
         image: { url: "/photos/domingo.jpg", alt: "Sofá con manta y tazas" },
@@ -57,10 +53,10 @@ export const birthdayContent: BirthdayContent = {
 
   // 🏠 Sección principal o “hero” de la página.
   hero: {
-    title: "Feliz Cumple, Sofi",             // Título grande de la página.
-    emoji: "🎂",                             // Emoji decorativo.
-    emojiLabel: "Pastel de cumpleaños",      // Etiqueta accesible para el emoji.
-    scrollCta: "Ver carta",                  // Texto del botón para desplazarse a la carta.
+    title: "Feliz Cumple, Sofi",              // Título grande de la página.
+    emoji: "🎂",                              // Emoji decorativo.
+    emojiLabel: "Pastel de cumpleaños",       // Etiqueta accesible para el emoji.
+    scrollCta: "Ver carta",                   // Texto del botón para desplazarse a la carta.
     scrollAriaLabel: "Ir a la carta de cumpleaños", // Etiqueta accesible del botón.
   },
 
@@ -68,7 +64,6 @@ export const birthdayContent: BirthdayContent = {
   letter: {
     heading: "Una carta para ti", // Título de la carta.
     body:
-      // Cuerpo del texto, con saltos de línea explícitos (\n\n).
       "Hoy celebramos tu risa y todos esos momentos que hacen que el mundo sea más bonito cuando estás...\n\n" +
       "Que este año te regale viajes inesperados y cafés interminables. Pase lo que pase, aquí estaré para aplaudirte fuerte.\n\n" +
       "Feliz cumpleaños — con cariño, Andrés.",
@@ -91,8 +86,8 @@ export const birthdayContent: BirthdayContent = {
 
   // 🖼 Galería de recuerdos (memories).
   memories: {
-    heading: "Momentos favoritos", // Título de la sección.
-    ariaLabel: "Galería de recuerdos fotográficos", // Descripción accesible.
+    heading: "Momentos favoritos",
+    ariaLabel: "Galería de recuerdos fotográficos",
     photos: [
       { url: "/photos/m1.jpg", alt: "Brindis" },
       { url: "/photos/m2.jpg", alt: "Paseo" },
@@ -122,6 +117,20 @@ export const birthdayContent: BirthdayContent = {
     description: "Canción favorita de Sofi para el cumpleaños", // Descripción del audio.
   },
 
-  // 🔍 Configuración de accesibilidad.
-  accessibility: { reducedMotionRespect: true }, // Respeta la preferencia del usuario sobre movimiento reducido.
+  // 🧩 NUEVO: Control de secciones activas/inactivas
+  sections: {
+    background: true, // Fondo bokeh
+    effects: true,    // Confeti y burbujas
+    hero: true,       // Título principal
+    letter: true,     // Carta con efecto de máquina de escribir
+    photos: false,     // Fotos laterales
+    timeline: true,   // Línea del tiempo
+    memories: false,   // Galería de recuerdos
+    audio: true,      // Reproductor musical
+    share: true,      // Botones para compartir
+    footer: true,     // Pie de página
+  },
+
+  // ♿ Configuración de accesibilidad
+  accessibility: { reducedMotionRespect: true },
 };
