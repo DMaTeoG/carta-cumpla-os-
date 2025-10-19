@@ -15,36 +15,25 @@ import { FooterNote } from "@/components/layout/FooterNote";
 import { ConfettiOrBubbles } from "@/components/feedback/ConfettiOrBubbles";
 import { AudioPlayer } from "@/components/media/AudioPlayer";
 
-/** Grid fijo: 3 columnas (rails 240px, carta 640px) para que no se mueva. */
+/** Grid fijo: 3 columnas para que la carta no se mueva en md+ */
 const GRID_COLS = "md:grid-cols-[240px_minmax(0,640px)_240px]";
-/** Para pantallas chicas, la carta ocupa ancho completo y los rails se ocultan. */
 
 function RailSlot({
   enabled,
   children,
-  side,
 }: {
   enabled: boolean;
   children: React.ReactNode;
-  side: "left" | "right";
 }) {
-  // Siempre renderizamos la columna del rail (reserva espacio),
-  // pero si está desactivado, mostramos un "espaciador" vacío.
+  // Siempre reservamos espacio de la columna en md+.
   return (
-    <div
-      className={
-        // oculto en mobile; visible en md+ para reservar columna
-        "hidden md:block"
-      }
-      aria-hidden={!enabled}
-    >
+    <div className="hidden md:block" aria-hidden={!enabled}>
       {enabled ? children : <div className="h-full w-full" />}
     </div>
   );
 }
 
 export default function Home() {
-  const [typewriterFinishedAt, setTypewriterFinishedAt] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [triggerCount, setTriggerCount] = useState(0);
 
@@ -67,7 +56,7 @@ export default function Home() {
   }, [prefersReducedMotion]);
 
   const handleTypewriterFinished = () => {
-    setTypewriterFinishedAt(Date.now());
+    // solo disparar efectos; ya no guardamos el timestamp
     setTriggerCount((prev) => prev + 1);
   };
 
@@ -75,7 +64,6 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen overflow-hidden pb-20">
-      {/* Fondo bokeh */}
       {birthdayContent.sections.background && (
         <BackgroundBokeh
           palette={birthdayContent.theme.palette}
@@ -84,7 +72,6 @@ export default function Home() {
         />
       )}
 
-      {/* Confeti / burbujas */}
       {birthdayContent.sections.effects && (
         <ConfettiOrBubbles
           enableConfetti={birthdayContent.effects.confetti}
@@ -97,7 +84,6 @@ export default function Home() {
       <main
         className={`relative z-10 mx-auto flex max-w-6xl flex-col gap-12 px-6 pt-16 md:px-12 ${paletteClasses}`}
       >
-        {/* Hero (independiente) */}
         {birthdayContent.sections.hero && (
           <HeaderTitle
             title={birthdayContent.hero.title}
@@ -109,7 +95,6 @@ export default function Home() {
           />
         )}
 
-        {/* Botón para bajar a la carta (solo si hay carta) */}
         {birthdayContent.sections.letter && (
           <button
             type="button"
@@ -126,16 +111,13 @@ export default function Home() {
           </button>
         )}
 
-        {/* Sección central con grid SIEMPRE de 3 columnas en md+.
-            Si desactivas photos, se quedan espaciadores y la carta no se mueve. */}
         {(birthdayContent.sections.letter || birthdayContent.sections.photos) && (
           <section
             className={`grid gap-8 ${GRID_COLS} md:items-start`}
             role="region"
             aria-label="Carta y rieles"
           >
-            {/* Rail izquierdo (reserva columna aunque esté desactivado) */}
-            <RailSlot enabled={birthdayContent.sections.photos} side="left">
+            <RailSlot enabled={birthdayContent.sections.photos}>
               <PhotoRail
                 photos={birthdayContent.photos.left}
                 floatPolaroids={birthdayContent.effects.polaroidsFloat}
@@ -144,7 +126,6 @@ export default function Home() {
               />
             </RailSlot>
 
-            {/* Carta (columna central fija) */}
             {birthdayContent.sections.letter ? (
               <PaperCard withTornEdge className="mx-auto max-w-2xl">
                 <div id="letter-section" />
@@ -160,12 +141,10 @@ export default function Home() {
                 />
               </PaperCard>
             ) : (
-              // Si desactivas la carta, igual reservamos el ancho central para que nada “salte”.
               <div className="mx-auto max-w-2xl" aria-hidden />
             )}
 
-            {/* Rail derecho (reserva columna aunque esté desactivado) */}
-            <RailSlot enabled={birthdayContent.sections.photos} side="right">
+            <RailSlot enabled={birthdayContent.sections.photos}>
               <PhotoRail
                 photos={birthdayContent.photos.right}
                 floatPolaroids={birthdayContent.effects.polaroidsFloat}
@@ -176,7 +155,6 @@ export default function Home() {
           </section>
         )}
 
-        {/* Audio (independiente, no afecta el grid anterior) */}
         {birthdayContent.sections.audio && birthdayContent.audio && (
           <AudioPlayer
             src={birthdayContent.audio.src}
@@ -186,7 +164,6 @@ export default function Home() {
           />
         )}
 
-        {/* Timeline (independiente) */}
         {birthdayContent.sections.timeline && (
           <Timeline
             timeline={birthdayContent.timeline}
@@ -194,7 +171,6 @@ export default function Home() {
           />
         )}
 
-        {/* Memorias (independiente) */}
         {birthdayContent.sections.memories && (
           <MemoriesGrid
             memories={birthdayContent.memories}
@@ -202,7 +178,6 @@ export default function Home() {
           />
         )}
 
-        {/* Share (independiente) */}
         {birthdayContent.sections.share && (
           <ShareButtons
             label={birthdayContent.cta.share}
@@ -212,7 +187,6 @@ export default function Home() {
           />
         )}
 
-        {/* Footer (independiente) */}
         {birthdayContent.sections.footer && (
           <FooterNote note={birthdayContent.footer.note} />
         )}

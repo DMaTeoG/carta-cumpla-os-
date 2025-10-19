@@ -40,7 +40,7 @@ export const birthdayContent: BirthdayContent = {
         date: "Octubre 2023",
         title: "Mini viaje sorpresa",
         text: "Nos perdimos, pero encontramos el mejor mirador. Fue un día lleno de risas y buena vibra.",
-        video: { url: "/viaje.mp4", alt: "Video del viaje al mirador" },
+        video: { url: "/onom.mp4", alt: "Video del viaje al mirador" },
       },
       {
         date: "Enero 2024",

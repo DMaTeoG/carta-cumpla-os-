@@ -1,17 +1,19 @@
 import Image from "next/image";
-import type { MemoriesConfig, MediaItem } from "@/lib/types";
+import type { MemoriesConfig } from "@/lib/types";
 
 interface MemoriesGridProps {
   memories: MemoriesConfig;
   prefersReducedMotion: boolean;
 }
 
-function isVideo(m: MediaItem) {
-  // Discriminante por 'type' o, si falta, por extensión (back-compat)
-  return m.type === "video" || /\.(mp4|webm|ogg)$/i.test(m.url);
+function isVideoUrl(url: string) {
+  return /\.(mp4|webm|ogg)$/i.test(url);
 }
 
-export function MemoriesGrid({ memories, prefersReducedMotion }: MemoriesGridProps) {
+export function MemoriesGrid({
+  memories,
+  prefersReducedMotion,
+}: MemoriesGridProps) {
   return (
     <section aria-label={memories.ariaLabel} className="space-y-6">
       <h3 className="text-xl font-semibold text-center sm:text-left">
@@ -24,20 +26,22 @@ export function MemoriesGrid({ memories, prefersReducedMotion }: MemoriesGridPro
             key={memory.url}
             className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/70 bg-white/60 shadow-sm transition"
           >
-            {isVideo(memory) ? (
+            {isVideoUrl(memory.url) ? (
               <video
                 src={memory.url}
-                poster={"posterUrl" in memory ? memory.posterUrl : undefined}
                 className="h-full w-full object-cover"
-                autoPlay={"autoPlay" in memory ? !!memory.autoPlay : true}
-                loop={"loop" in memory ? !!memory.loop : true}
-                muted={"muted" in memory ? !!memory.muted : true}
-                playsInline={"playsInline" in memory ? !!memory.playsInline : true}
-                controls={"controls" in memory ? !!memory.controls : false}
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls={false}
                 style={
                   prefersReducedMotion
                     ? undefined
-                    : { transform: "translateZ(0)", animation: "breath 7.5s ease-in-out infinite" }
+                    : {
+                        transform: "translateZ(0)",
+                        animation: "breath 7.5s ease-in-out infinite",
+                      }
                 }
               />
             ) : (
@@ -51,7 +55,10 @@ export function MemoriesGrid({ memories, prefersReducedMotion }: MemoriesGridPro
                 style={
                   prefersReducedMotion
                     ? undefined
-                    : { transform: "translateZ(0)", animation: "breath 7.5s ease-in-out infinite" }
+                    : {
+                        transform: "translateZ(0)",
+                        animation: "breath 7.5s ease-in-out infinite",
+                      }
                 }
               />
             )}
