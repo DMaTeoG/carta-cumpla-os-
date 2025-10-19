@@ -17,7 +17,7 @@ export const birthdayContent: BirthdayContent = {
 
   // ⌨️ Configuración del efecto de "máquina de escribir" para la carta.
   typewriter: {
-    speedMs: 50,                   // Velocidad entre letras (ms por carácter).
+    speedMs: 60,                   // Velocidad entre letras (ms por carácter).
     startDelayMs: 1000,            // Retraso antes de empezar a escribir (ms).
     soundClicks: true,             // Reproduce clics de máquina de escribir.
     endChime: true,                // Sonido final cuando termina de escribir.
@@ -37,23 +37,23 @@ export const birthdayContent: BirthdayContent = {
         image: { url: "/dia_c.jpg", alt: "Foto del día que nos conocimos" },
       },
       {
-        date: "Octubre 2023",
-        title: "Mini viaje sorpresa",
-        text: "Nos perdimos, pero encontramos el mejor mirador. Fue un día lleno de risas y buena vibra.",
-        video: { url: "/onom.mp4", alt: "Video del viaje al mirador" },
+        date: "29 de agosto de 2025",
+        title: "fuimos al onomástico",
+        text: "Nos fuimos a disfrutar la música. Todo se puso muy random después, jajaja, pero lo gocé un montón. Gracias por estar ahí.",
+        image: { url: "/onomastico.jpg", alt: "Foto del onomástico" },
       },
       {
-        date: "Enero 2024",
-        title: "Domingo lento",
-        text: "Pelis, manta y galletas. Receta: quedarse.",
-        image: { url: "/photos/domingo.jpg", alt: "Sofá con manta y tazas" },
+        date: "21 de septiembre de 2025",
+        title: "un Domingo normalito",
+        text: "No fue un plan épico, pero me encantó. Saliste del examen y nos pusimos a echar chisme un buen rato. Esos momentos tranquilos también valen oro.",
+        image: { url: "/random.jpg", alt: "foto casual" },
       },
     ],
   },
 
   // 🏠 Sección principal o “hero” de la página.
   hero: {
-    title: "Feliz Cumple, Sofi",              // Título grande de la página.
+    title: "Feliz Cumple, Estefania",              // Título grande de la página.
     emoji: "🎂",                              // Emoji decorativo.
     emojiLabel: "Pastel de cumpleaños",       // Etiqueta accesible para el emoji.
     scrollCta: "Ver carta",                   // Texto del botón para desplazarse a la carta.
@@ -64,9 +64,12 @@ export const birthdayContent: BirthdayContent = {
   letter: {
     heading: "Una carta para ti", // Título de la carta.
     body:
-      "Hoy celebramos tu risa y todos esos momentos que hacen que el mundo sea más bonito cuando estás...\n\n" +
-      "Que este año te regale viajes inesperados y cafés interminables. Pase lo que pase, aquí estaré para aplaudirte fuerte.\n\n" +
-      "Feliz cumpleaños — con cariño, Andrés.",
+      "Hoy celebramos que llegaste a este mundo y que tuve la suerte de coincidir contigo.\n\n" +
+    "Te deseo un año lleno de cosas lindas: metas cumplidas, sorpresas buenas y días tranquilos.\n\n" +
+    "Que la vida te siga regalando razones para sonreír, y que nunca te falte quien te acompañe en las locuras.\n\n" +
+    "Gracias por ser como eres y por dejarme ser parte de tu historia.\n\n" +
+    "¡Feliz cumpleaños, Estefania! 🎉🎂\n\n" +
+    "Con cariño,\nMateo",
     ariaLabel: "Carta de cumpleaños narrada como máquina de escribir", // Descripción accesible.
   },
 
@@ -107,14 +110,14 @@ export const birthdayContent: BirthdayContent = {
   },
 
   // 🧾 Pie de página (footer).
-  footer: { note: "© 2025 Con cariño para Sofi" },
+  footer: { note: "© 2025 Con cariño para Estefania" },
 
   // 🎵 Configuración del audio de fondo.
   audio: {
     src: "/happy.mp3",                             // Ruta del archivo de audio.
     playLabel: "Reproducir canción",               // Texto accesible para el botón de play.
     pauseLabel: "Pausar canción",                  // Texto accesible para el botón de pausa.
-    description: "Canción favorita de Sofi para el cumpleaños", // Descripción del audio.
+    description: "Canción favorita de Estefania para el cumpleaños", // Descripción del audio.
   },
 
   // 🧩 NUEVO: Control de secciones activas/inactivas
@@ -126,7 +129,7 @@ export const birthdayContent: BirthdayContent = {
     photos: false,     // Fotos laterales
     timeline: true,   // Línea del tiempo
     memories: false,   // Galería de recuerdos
-    audio: true,      // Reproductor musical
+    audio: false,      // Reproductor musical
     share: true,      // Botones para compartir
     footer: true,     // Pie de página
   },
